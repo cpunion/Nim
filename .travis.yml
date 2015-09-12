@@ -1,0 +1,13 @@
+language: c
+os:
+  - linux
+  - osx
+install:
+  - git clone --depth 1 git://github.com/nim-lang/csources
+  - cd csources && sh build.sh && cd ..
+script:
+  - bin/nim c koch
+  - ./koch boot -d:release
+  - export PATH=$PWD/bin:$PATH
+  - ./koch test
+
